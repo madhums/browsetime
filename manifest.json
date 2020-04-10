@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "Screentime",
+  "description": "See how much time you spend on your browser per website",
+  "short_name": "screentime",
+  "version": "1.0",
+  "browser_action": {
+    "default_popup": "index.html"
+  },
+  "background": {
+    "scripts": [
+      "js/background.js"
+    ]
+  },
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
