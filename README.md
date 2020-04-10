@@ -1,6 +1,6 @@
 Very much inspired by https://medium.com/backticks-tildes/how-i-developed-apples-screen-time-chrome-extension-988e0c451894, but tracks all domains and the time spent on them and gives you a nice list.
 
-![](screenshot.png)
+<img src="screenshot.png" width="200" />
 
 In order to install 
 
