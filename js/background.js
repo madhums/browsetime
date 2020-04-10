@@ -1,10 +1,3 @@
-const urls = [
-  '*://*.facebook.com/',
-  '*://*.twitter.com/',
-  '*://*.youtube.com/',
-  '*://*.instagram.com/'
-]
-
 const STORAGE = chrome.storage.local;
 
 let active = {};
@@ -66,7 +59,7 @@ const getActiveTab = () => {
 const setActive = async () => {
   const activeTab = await getActiveTab();
   if (!activeTab) return;
-  const { url, id: tabId } = activeTab;
+  const { url } = activeTab; // can also get id as tabId
   if (!url) return;
 
   let host = new URL(url).hostname;
