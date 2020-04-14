@@ -8,7 +8,7 @@ A chrome/brave extension to monitor how much time you spend on websites.
 
 ## Install
 
-1. Download the extension [here](-/archive/master/screentime-master.zip) and unzip it
+1. Download the extension [here](-/archive/master/browsetime-master.zip) and unzip it
 2. Navigate to `chrome://extensions/` or `brave://extensions/`
 3. Enable developer mode on the top right corner
 4. Click on "Load unpacked" button on the top left corner, this should ask you to browse for the files.
