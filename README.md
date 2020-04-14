@@ -1,5 +1,7 @@
 # Browsetime
 
+<img src="icon-browsetime-128.png" width="100" />
+
 A chrome/brave extension to monitor how much time you spend on websites.
 
 <img src="screenshot.png" width="200" />
