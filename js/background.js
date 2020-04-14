@@ -105,11 +105,12 @@ chrome.windows.onFocusChanged.addListener(window => {
 });
 
 // Increase detection interval from default 60s to 3 times that
-chrome.idle.setDetectionInterval(3 * 60); 
+chrome.idle.setDetectionInterval(3 * 60);
 
 // Listen to state change so that it doesn't track all the time
 chrome.idle.onStateChanged.addListener((state) => {
-  console.log(state);
-  if (state === 'idle' || state === 'locked') end();
-  else setActive();
+  // also end when 'idle' but figure a way first to find out 
+  // if no media is being played
+  if (state === 'locked') end();
+  else if (state === 'active') setActive();
 });
