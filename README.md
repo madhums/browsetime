@@ -8,13 +8,13 @@ A chrome/brave extension to monitor how much time you spend on websites.
 
 ## Install
 
-1. Download the extension [here](/-/archive/master/browsetime-master.zip) and unzip it
+1. Download the extension [here](https://gitlab.com/madhums/browsetime/-/archive/master/browsetime-master.zip) and unzip it
 2. Navigate to `chrome://extensions/` or `brave://extensions/`
 3. Enable developer mode on the top right corner
 4. Click on "Load unpacked" button on the top left corner, this should ask you to browse for the files.
 5. Point to the extracted files from step 1
 
-OR checkout the [releases](/-/releases) to install from the crx file.
+OR checkout the [releases](https://gitlab.com/madhums/browsetime/-/releases) to install from the crx file.
 
 ## Roadmap
 
