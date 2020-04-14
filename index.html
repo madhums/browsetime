@@ -15,12 +15,31 @@
       padding: 5px;
       overflow: auto;
     }
+
+    .my-2 {
+      margin: 5px 0;
+    }
   </style>
 </head>
 
 <body>
   <h3>Screentime</h3>
-  <div id="app"></div>
+  <div class="my-2">
+    <label>
+      <input id="filter-today" type="checkbox" name="today" /> Today
+    </label>
+    <label>
+      <select name="max_items" id="max-items">
+        <option value="">show all</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+      </select>
+    </label>
+  </div>
+  <div id="results"></div>
   <script src="js/display.js"></script>
 </body>
 

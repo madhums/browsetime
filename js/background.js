@@ -81,6 +81,10 @@ chrome.tabs.onUpdated.addListener(() => {
   setActive();
 });
 
+chrome.tabs.onRemoved.addListener(() => {
+  end();
+});
+
 chrome.tabs.onActivated.addListener(() => {
   if (active.name) {
     end();
