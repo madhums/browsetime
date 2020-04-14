@@ -1,6 +1,6 @@
 # Browsetime
 
-<img src="icon-browsetime-128.png" width="100" />
+<img src="icon-browsetime-128.png" width="80" />
 
 A chrome/brave extension to monitor how much time you spend on websites.
 
@@ -8,13 +8,13 @@ A chrome/brave extension to monitor how much time you spend on websites.
 
 ## Install
 
-1. Download the extension [here](https://gitlab.com/madhums/screentime/-/archive/master/screentime-master.zip) and unzip it
+1. Download the extension [here](-/archive/master/screentime-master.zip) and unzip it
 2. Navigate to `chrome://extensions/` or `brave://extensions/`
 3. Enable developer mode on the top right corner
 4. Click on "Load unpacked" button on the top left corner, this should ask you to browse for the files.
 5. Point to the extracted files from step 1
 
-Enjoy tracking how much time you spend browsing websites!
+OR checkout the [releases](-/releases) to install from the crx file.
 
 ## Roadmap
 
