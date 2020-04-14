@@ -1,12 +1,13 @@
-
+var STORAGE = chrome.storage.local;
 var FILTER_TODAY_KEY = 'filter-today';
 var MAX_ITEMS_KEY = 'max-items-count';
-var MAX_ITEMS_OPTIONS = ['', '5', '10', '15', '20', '30']
+var MAX_ITEMS_OPTIONS = ['', '5', '10', '15', '20', '30'];
+var EXCLUDE_HOST_LIST = ['newtab'];
 var todaysDate = new Date().toISOString().substr(0, 10);
 var filter = null;
 
 // Get filters
-chrome.storage.local.get(FILTER_TODAY_KEY, function(obj) {
+STORAGE.get(FILTER_TODAY_KEY, function(obj) {
   var filter_today_value = obj[FILTER_TODAY_KEY];
   // set the value of checkbox 
   document.getElementById(FILTER_TODAY_KEY).checked = filter_today_value;
@@ -19,7 +20,7 @@ chrome.storage.local.get(FILTER_TODAY_KEY, function(obj) {
 });
 
 // Get filters and set UI element
-chrome.storage.local.get(MAX_ITEMS_KEY, function(obj) {
+STORAGE.get(MAX_ITEMS_KEY, function(obj) {
   var idx = MAX_ITEMS_OPTIONS.indexOf(obj[MAX_ITEMS_KEY]);
   document.getElementById('max-items').selectedIndex = idx;
 });
@@ -28,10 +29,10 @@ chrome.storage.local.get(MAX_ITEMS_KEY, function(obj) {
 var today = document.querySelector('input[name=today]');
 today.addEventListener('change', function () {
   if(this.checked) {
-    chrome.storage.local.set({ [FILTER_TODAY_KEY]: true });
+    STORAGE.set({ [FILTER_TODAY_KEY]: true });
     filter = { date: todaysDate };
   } else {
-    chrome.storage.local.set({ [FILTER_TODAY_KEY]: false });
+    STORAGE.set({ [FILTER_TODAY_KEY]: false });
     filter = null;
   }
   get_all(filter, display);
@@ -41,13 +42,13 @@ today.addEventListener('change', function () {
 var maxItems = document.querySelector('select[name=max_items]');
 maxItems.addEventListener('change', function () {
   var count = this.value;
-  chrome.storage.local.set({ [MAX_ITEMS_KEY]: count });
+  STORAGE.set({ [MAX_ITEMS_KEY]: count });
   get_all(filter, display);
 });
 
 // Get all items and display
 function get_all(filters, cb) {
-  chrome.storage.local.get(function (items) {
+  STORAGE.get(function (items) {
     // Flatten the object to { host: 'time' } format 
     // Original format is { 'yyyy-mm-dd-hh': { 'host': time, ... }, ... }
 
@@ -55,12 +56,16 @@ function get_all(filters, cb) {
       // get only date objects and remvoe filters and others
       if (typeof items[key] !== 'object') return initial;
       
+      // date filter
       if (filters && filters.date && 
         key.substr(0, 10) !== filters.date) {
         return initial;
       }
-
+      
       function sum (init, k) {
+        // exclude selected hosts
+        if (EXCLUDE_HOST_LIST.includes(k)) return initial;
+
         if (initial[k]) initial[k] += items[key][k];
         else initial[k] = items[key][k];
         return initial;
@@ -80,7 +85,7 @@ function get_all(filters, cb) {
 
 function display(arr) {
   var total = arr.map(x => x.value).reduce((a, b) => a + b, 0)
-  chrome.storage.local.get(MAX_ITEMS_KEY, function(obj) {  
+  STORAGE.get(MAX_ITEMS_KEY, function(obj) {  
     var count = obj[MAX_ITEMS_KEY] || undefined;
     document.getElementById('results').innerHTML = `
       <div class="my-2"><strong>${time_display(total)}</strong><br /></div>
