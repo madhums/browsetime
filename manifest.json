@@ -17,5 +17,10 @@
     "storage",
     "idle"
   ],
+  "icons": {
+    "16": "icon-browsetime-16.png",
+    "48": "icon-browsetime-48.png",
+    "128": "icon-browsetime-128.png"
+  },
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
