@@ -3,7 +3,7 @@
   "name": "Browsetime",
   "description": "Monitor how much time you spend on websites",
   "short_name": "browsetime",
-  "version": "1.0",
+  "version": "1.1",
   "browser_action": {
     "default_popup": "index.html"
   },
