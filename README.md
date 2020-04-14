@@ -1,8 +1,10 @@
-Very much inspired by https://medium.com/backticks-tildes/how-i-developed-apples-screen-time-chrome-extension-988e0c451894, but tracks all domains and the time spent on them and gives you a nice list.
+# Browsetime
+
+A chrome/brave extension to monitor how much time you spend on websites.
 
 <img src="screenshot.png" width="200" />
 
-In order to install 
+## Install
 
 1. Download the extension [here](https://gitlab.com/madhums/screentime/-/archive/master/screentime-master.zip) and unzip it
 2. Navigate to `chrome://extensions/` or `brave://extensions/`
@@ -10,4 +12,15 @@ In order to install
 4. Click on "Load unpacked" button on the top left corner, this should ask you to browse for the files.
 5. Point to the extracted files from step 1
 
-Enjoy tracking how much time you spend on each website you visit!
+Enjoy tracking how much time you spend browsing websites!
+
+## Roadmap
+
+- [ ] Display percentage change compared to yesterday, lastweek, month and it's previous time.
+- [ ] Detect idle time better (Right now idle time is still tracked but chrome doesn't provide an api that does this properly as there doesn't seem to be a proper definition of "idle")
+- [ ] Export the report to csv
+- [ ] Charting and visualisations (low prio)
+
+---
+
+Inspired by https://medium.com/backticks-tildes/how-i-developed-apples-screen-time-chrome-extension-988e0c451894

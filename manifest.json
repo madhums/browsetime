@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Screentime",
-  "description": "See how much time you spend on your browser per website",
-  "short_name": "screentime",
+  "name": "Browsetime",
+  "description": "Monitor how much time you spend on websites",
+  "short_name": "browsetime",
   "version": "1.0",
   "browser_action": {
     "default_popup": "index.html"
