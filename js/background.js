@@ -2,12 +2,16 @@ const STORAGE = chrome.storage.local;
 const EXCLUDE_HOST_LIST = ['newtab'];
 let active = {};
 
+function todaysDate (date) {
+  var tzoffset = date.getTimezoneOffset() * 60000; // in ms
+  return new Date(date.getTime() - tzoffset).toISOString().substr(0, 10);
+}
+
 async function update (host, seconds) {
   // the keys are stored in the form of YYYY-MM-DD-HH
   const d = new Date();
-  const date = d.toISOString().substr(0, 10);
   const hour = d.getHours();
-  const key = date + '-' + hour;
+  const key = todaysDate(d) + '-' + hour;
 
   // get the data saved for the current date
   const data = await getData(key);
