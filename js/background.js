@@ -1,8 +1,8 @@
 const STORAGE = chrome.storage.local;
-
+const EXCLUDE_HOST_LIST = ['newtab'];
 let active = {};
 
-const update = async (host, seconds) => {
+async function update (host, seconds) {
   // the keys are stored in the form of YYYY-MM-DD-HH
   const d = new Date();
   const date = d.toISOString().substr(0, 10);
@@ -22,11 +22,11 @@ const update = async (host, seconds) => {
   save(key, data);
 }
 
-const save = (key, value) => {
+function save (key, value) {
   return new Promise((resolve) => STORAGE.set({ [key]: value }, resolve));
 }
 
-const getData = (key) => {
+function getData (key) {
   return new Promise((resolve) => {
     STORAGE.get(key, result => (result[key] 
       ? resolve(result[key]) 
@@ -35,7 +35,7 @@ const getData = (key) => {
   });
 }
 
-const end = () => {
+function end () {
   if (active.name) {
     const timeDiff = parseInt((Date.now() - active.time) / 1000);
     console.log(`You spent ${timeDiff} seconds on ${active.name}`);
@@ -45,25 +45,16 @@ const end = () => {
   }
 }
 
-const getActiveTab = () => {
-  return new Promise(resolve => {
-    chrome.tabs.query({
-      active: true,
-      currentWindow: true
-    }, activeTab => {
-      resolve(activeTab[0]);
-    });
-  });
-}
-
-const setActive = async () => {
+async function setActive () {
   const activeTab = await getActiveTab();
   if (!activeTab) return;
   const { url } = activeTab; // can also get id as tabId
   if (!url) return;
 
   let host = new URL(url).hostname;
-  // host = host.replace('www.', '').replace('.com', '');
+
+  // don't track hostnames
+  if (EXCLUDE_HOST_LIST.includes(host)) return;
   
   // set the site and current time
   if (active.name !== host) {
@@ -75,6 +66,17 @@ const setActive = async () => {
     };
     console.log(`${active.name} visited at ${active.time}`);
   }
+}
+
+function getActiveTab () {
+  return new Promise(resolve => {
+    chrome.tabs.query({
+      active: true,
+      currentWindow: true
+    }, activeTab => {
+      resolve(activeTab[0]);
+    });
+  });
 }
 
 chrome.tabs.onUpdated.addListener(() => {
@@ -100,4 +102,14 @@ chrome.windows.onFocusChanged.addListener(window => {
   } else {
     setActive();
   }
+});
+
+// Increase detection interval from default 60s to 3 times that
+chrome.idle.setDetectionInterval(3 * 60); 
+
+// Listen to state change so that it doesn't track all the time
+chrome.idle.onStateChanged.addListener((state) => {
+  console.log(state);
+  if (state === 'idle' || state === 'locked') end();
+  else setActive();
 });
