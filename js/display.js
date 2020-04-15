@@ -94,8 +94,8 @@
       document.getElementById('results').innerHTML = `
         <div class="my-2"><strong>${time_display(total)}</strong><br /></div>
         ${arr.map(function (item) { 
-          return `${time_display(item.value)} &nbsp; ${item.host}`; 
-        }).slice(0, count).join('<br />')}
+          return `<div class="row">${time_display(item.value)} &nbsp; ${item.host}</div>`; 
+        }).slice(0, count).join('\n')}
       `;
     });
   }

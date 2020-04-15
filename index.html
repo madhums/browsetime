@@ -10,36 +10,48 @@
   <style>
     html,
     body {
+      margin: 0;
+    }
+
+    .container {
+      height: 320px;
       width: 230px;
-      height: 300px;
-      padding: 5px;
+      padding: 5px 15px 10px 15px;
       overflow: auto;
     }
 
     .my-2 {
       margin: 5px 0;
     }
+
+    .row {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
   </style>
 </head>
 
 <body>
-  <h3>Browsetime</h3>
-  <div class="my-2">
-    <label>
-      <input id="filter-today" type="checkbox" name="today" /> Today
-    </label>
-    <label>
-      <select name="max_items" id="max-items">
-        <option value="">show all</option>
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-        <option value="20">20</option>
-        <option value="30">30</option>
-      </select>
-    </label>
+  <div class="container">
+    <h3>Browsetime</h3>
+    <div class="my-2">
+      <label>
+        <input id="filter-today" type="checkbox" name="today" /> Today
+      </label>
+      <label>
+        <select name="max_items" id="max-items">
+          <option value="">show all</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+        </select>
+      </label>
+    </div>
+    <div id="results"></div>
   </div>
-  <div id="results"></div>
   <script src="js/display.js"></script>
 </body>
 
